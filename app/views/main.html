@@ -1,9 +1,18 @@
-<div class="hero-unit">
-  <h1>'Allo, 'Allo!</h1>
-  <p>You now have</p>
-  <ul>
-      <li ng-repeat="thing in awesomeThings">{{thing}}</li>
-  </ul>
-  <p>installed.</p>
-  <h3>Enjoy coding! - Yeoman</h3>
+<div class="span6">
+    <h4>Parmi les moyens suivants : </h4>
+	<ul>
+		<li ng-repeat="transport in transportations">{{transport}}</li>
+	</ul>
+	<form>
+		<fieldset>
+			<legend>Formulaire d'itinéraire</legend>
+			<label>De : </label>
+			<input type="text" placeholder="Départ...">
+
+			<label>A : </label>
+			<input type="text" placeholder="Arrivée...">
+
+			<button type="submit" class="btn">Go !</button>
+		</fieldset>
+	</form>
 </div>

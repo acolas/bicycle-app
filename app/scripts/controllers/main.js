@@ -2,9 +2,10 @@
 
 angular.module('bicycleApp')
   .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
+    $scope.transportations = [
+      'Voiture',
+      'Vélo',
+      'A pied',
+      'En transports en commun'
     ];
   });
