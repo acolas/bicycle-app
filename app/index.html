@@ -37,9 +37,9 @@
 
       <hr>
 
-     <div class="jumbotron">
+     <!--div class="jumbotron">
         <h2>Trouvez votre moyen de transport idéal !</h2>
-      </div>
+      </div-->
 
     <!-- Add your site or application content here -->
     <div class="row-fluid marketing" ng-view="">
@@ -81,8 +81,13 @@
 
         <!-- build:js scripts/modules.js -->
         <script src="bower_components/angular-resource/angular-resource.js"></script>
+        <script src="bower_components/angular-ui-map/src/map.js"></script>
+        <script src="bower_components/angular-ui-utils/modules/event/event.js"></script>
         <script src="bower_components/angular-cookies/angular-cookies.js"></script>
         <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+
         <!-- endbuild -->
 </body>
 </html>

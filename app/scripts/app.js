@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('bicycleApp', [])
+angular.module('bicycleApp', ['ui.map','ui.event'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
