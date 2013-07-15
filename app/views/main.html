@@ -1,4 +1,4 @@
-<div class="span6">
+<div class="span12">
     <!--h4>Parmi les moyens suivants : </h4>
 	<ul>
 		<li ng-repeat="transport in transportations">{{transport}}</li>
@@ -14,37 +14,50 @@
 
 		</fieldset>
 
-	    <button class="btn btn-primary" data-ng-click="searchNavigationGM()">Go !</button>
+		<button class="btn btn-primary" data-ng-click="searchNavigationGM()">Go !</button>
 
 	</form>
-	    <fieldset ng-hide="!durationWalking">
-	    	<legend>A pied</legend>
 
-	    	<p> Durée :
+	<div class="span3">
+	    <fieldset ng-hide="!walkingValues">
+	    	<legend>A pied</legend>
+		    <ul>
+		      <li ng-repeat="walkingValue in walkingValues">{{ walkingValue }}</li>
+		    </ul>
+		   	<a href="/"><button class="btn btn-info" data-ng-click="">+ d'infos</button></a>
+
+	    	<!--p> Durée :
 	    	<span>{{ durationWalking }}</span></p>
 		
 	    	<p> Distance :
-	    	<span>{{ distanceWalking }}</span></p>
+	    	<span>{{ distanceWalking }}</span></p-->
 		</fieldset>
-
-	    <fieldset ng-hide="!durationBicycling">
+	</div>
+	<div class="span3">
+	    <fieldset ng-hide="!bicyclingValues">
 			<legend>A vélo</legend>
-
-	    	<p> Durée :
-	    	<span>{{ durationBicycling }}</span></p>
-
-	    	<p> Distance :
-	    	<span>{{ distanceBicycling }}</span></p>
+		    <ul>
+		      <li ng-repeat="bicyclingValue in bicyclingValues">{{ bicyclingValue }}</li>
+		    </ul>
+		    <button class="btn btn-info" data-ng-click="">+ d'infos</button>
 		</fieldset>
-
-	    <fieldset ng-hide="!durationDriving">
+	</div>
+	<div class="span3">
+	    <fieldset ng-hide="!drivingValues">
 	    	<legend>En voiture</legend>
-	    	
-	    	<p> Durée :
-	    	<span>{{ durationDriving }}
-
-	    	<p> Distance :
-	    	<span>{{ distanceDriving }}</span></p>
+		    <ul>
+		      <li ng-repeat="drivingValue in drivingValues">{{ drivingValue }}</li>
+		    </ul>
+			<button class="btn btn-info" data-ng-click="">+ d'infos</button>
 		</fieldset>
-
+	</div>
+	<div class="span3">
+	    <fieldset ng-hide="!transitValues">
+	    	<legend>En transport en commun</legend>
+	    	<ul>
+		      <li ng-repeat="transitValue in transitValues">{{ transitValue }}</li>
+		    </ul>
+			<button class="btn btn-info" data-ng-click="">+ d'infos</button>
+		</fieldset>
+	</div>
 </div>
