@@ -7,9 +7,9 @@ angular.module('bicycleApp', ['ui.map','ui.event'])
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/info', {
+      .when('/info/:travelMode/:from/:to', {
         templateUrl: 'views/info.html',
-        controller: 'MainCtrl'
+        controller: 'InfoController'
       })
       .otherwise({
         redirectTo: '/'
