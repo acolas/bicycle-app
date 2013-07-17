@@ -4,3 +4,139 @@
 html, body {
 margin: 20px;
 }
+
+
+@font-face {
+  font-family: "iconvault";
+  src: url("iconvault_forecastfont.eot");
+  src: url("iconvault_forecastfont.eot?#iefix") format("embedded-opentype"),
+       url("iconvault_forecastfont.woff") format("woff"),
+       url("iconvault_forecastfont.ttf") format("truetype"),
+       url("iconvault_forecastfont.svg#iconvault") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}	
+	
+	
+[class^="weather-"], [class*=" weather-"] {
+    font-family: 'iconvault';
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    list-style-type: none;
+	font-size: 6em;
+}
+
+	/* -----Noon----- */
+
+	.weather-01n:after,.weather-02n:after,.weather-03n:after,
+	.weather-04n:after,.weather-09n:after,.weather-10n:after,.weather-11n:after,
+	.weather-13n:after, .weather-50n:after {
+	content: "\f10d";
+	color: #CCCCCC;
+	position: absolute;
+
+	}
+
+	/* -----Sun----- */
+
+	.weather-01d:after {
+	content: "\f113";
+	color: rgb(255, 165, 0);
+	}
+
+
+	/* ----- few clouds ----- */
+
+	.weather-02d:before {
+	content: '\f106';
+	color: rgb(204, 204, 204);
+	position:absolute;
+	}
+
+
+	.weather-02d:after {
+	content: "\f101";
+	color: rgb(255, 165, 0);
+	}
+
+
+	/* ----- clouds ----- */
+
+	.weather-03d:before {
+	content: '\f106';
+	color: rgb(204, 204, 204);
+	}
+
+
+
+	/* -----  broken clouds  ----- */
+
+	.weather-04d:before {
+	content: '\f106';
+	color: black;
+	}
+
+
+	/* -----  shower rain  ----- */
+
+	.weather-09d:before {
+	content: '\f105';
+	color: rgb(204, 204, 204);
+	position:absolute;
+	}
+	.weather-09d:after {
+	content: '\f107';
+	color: #4681C3;
+	}
+
+
+	/* -----  rain  ----- */
+
+	.weather-10d:before {
+	content: '\f105';
+	color: rgb(204, 204, 204);
+	position:absolute;
+	}
+	.weather-10d:after {
+	content: '\f10a';
+	color: #4681C3;
+	}
+
+	/* -----  Thunderstorm  ----- */
+
+	.weather-11d:before {
+	content: '\f105';
+	color: black;
+	position:absolute;
+	}
+	.weather-11d:after {
+	content: '\f114';
+	color: #FFA500;
+	}
+
+
+	/* -----  snow  ----- */
+
+	.weather-13d:before {
+	content: '\f105';
+	color: #CCCCCC;
+	position:absolute;
+	}
+	.weather-13d:after {
+	content: '\f10b';
+	color: #ACD3F3;
+	}
+
+	/* ----- mist ----- */
+
+	.weather-50d:before {
+	content: '\f108';
+	color: #CCCCCC;
+	}
+
+
+	.weather-span {
+	padding-top: 68px;
+	}
+	

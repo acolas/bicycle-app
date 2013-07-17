@@ -1,65 +1,91 @@
-<div class="span12">
     <!--h4>Parmi les moyens suivants : </h4>
 	<ul>
 		<li ng-repeat="transport in transportations">{{transport}}</li>
 	</ul-->
-	<form>
-		<fieldset>
-			<legend>Formulaire d'itinéraire</legend>
-			<label>De : </label>
-			<input data-ng-model="inputData.from" type="text" placeholder="Départ...">
+	<div class="span12">
+		<div class="span6">
+			<form>
+				<fieldset>
+					<legend>Itinéraire</legend>
+					<label>De : </label>
+					<input data-ng-model="inputData.from" type="text" placeholder="Départ...">
 
-			<label>A : </label>
-			<input data-ng-model="inputData.to" type="text" placeholder="Arrivée...">
+					<label>A : </label>
+					<input data-ng-model="inputData.to" type="text" placeholder="Arrivée...">
 
-		</fieldset>
+				</fieldset>
 
-		<button class="btn btn-primary" data-ng-click="searchNavigationGM()">Go !</button>
+				<button class="btn btn-primary" data-ng-click="searchNavigationGM()">Go !</button>
 
-	</form>
+			</form>
+		</div>
+		<div class="span6">
 
-	<div class="span3">
+			<fieldset ng-show="searchResultFrom.name">
+				<legend>Météo du parcours</legend>		
+				<div class="span12">
+					<div class="span3">
+						<div ng-show="searchResultFrom.name">	
+							<h2>{{searchResultFrom.name}}</h2>	
+							<h5>Actuellement: {{searchResultFrom.main.temp}}°C.</h5> 
+							<h6>Min: {{searchResultFrom.main.temp_min}}°C. 
+								Max: {{searchResultFrom.main.temp_max}}°C.</h6> 
+							</div>
+						</div>	
+						<div class="span3 weather-span weather-{{searchResultFrom.weather[0].icon}}">
+						</div>
+						
+						<div class="span3">
+							<div ng-show="searchResultTo.name">
+								<h2>{{searchResultTo.name}}</h2>	
+								<h5>Actuellement: {{searchResultTo.main.temp}}°C.</h5> 
+								<h6>Min: {{searchResultTo.main.temp_min}}°C. 
+									Max: {{searchResultTo.main.temp_max}}°C.</h6>
+								</div>
+							</div>
+							<div class="span3 weather-span weather-{{searchResultTo.weather[0].icon}}">
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				<div class="span12">
+					<div class="span4">
 
-	    <fieldset ng-hide="!walkingValues">
+						<fieldset ng-hide="!walkingValues">
 
-	<div ng-class="{true: 'alert alert-info'}[InfoCssWalking]">
-	    	<legend>A pied</legend>
-		    <ul>
-		      <li ng-repeat="walkingValue in walkingValues">{{ walkingValue }}</li>
-		    </ul>
-		   	<a href="#/info/walking/{{ from }}/{{ to }}"><button class="btn btn-info" data-ng-click="">+ d'infos</button></a>
+							<div ng-class="{true: 'alert alert-info'}[InfoCssWalking]">
+								<legend>A pied</legend>
+								<ul>
+									<li ng-repeat="walkingValue in walkingValues">{{ walkingValue }}</li>
+								</ul>
+								<a href="#/info/walking/{{ from }}/{{ to }}"><button class="btn btn-info" data-ng-click="">+ d'infos</button></a>
 
-	</div>
-	    	<!--p> Durée :
-	    	<span>{{ durationWalking }}</span></p>
-		
-	    	<p> Distance :
-	    	<span>{{ distanceWalking }}</span></p-->
-		</fieldset>
-</div>
-	<div class="span3">
-	    <fieldset ng-hide="!bicyclingValues">
+							</div>
+	    	</fieldset>
+	    </div>
+	    <div class="span4">
+	    	<fieldset ng-hide="!bicyclingValues">
 	    		<div ng-class="{true: 'alert alert-info'}[InfoCssBicycling]">
-			<legend>A vélo</legend>
-		    <ul>
-		      <li ng-repeat="bicyclingValue in bicyclingValues">{{ bicyclingValue }}</li>
-		    </ul>
-		   	<a href="#/info/bicycling/{{ from }}/{{ to }}"><button class="btn btn-info" data-ng-click="">+ d'infos</button></a>
-		   </div>
-		</fieldset>
-	</div>
-	<div class="span3">
-	    <fieldset ng-hide="!drivingValues">
+	    			<legend>A vélo</legend>
+	    			<ul>
+	    				<li ng-repeat="bicyclingValue in bicyclingValues">{{ bicyclingValue }}</li>
+	    			</ul>
+	    			<a href="#/info/bicycling/{{ from }}/{{ to }}"><button class="btn btn-info" data-ng-click="">+ d'infos</button></a>
+	    		</div>
+	    	</fieldset>
+	    </div>
+	    <div class="span4">
+	    	<fieldset ng-hide="!drivingValues">
 	    		<div ng-class="{true: 'alert alert-info'}[InfoCssDriving]">
-	    	<legend>En voiture</legend>
-		    <ul>
-		      <li ng-repeat="drivingValue in drivingValues">{{ drivingValue }}</li>
-		    </ul>
-		   	<a href="#/info/driving/{{ from }}/{{ to }}"><button class="btn btn-info" data-ng-click="">+ d'infos</button></a>
-		   </div>
-		</fieldset>
-	</div>
-	<div class="span3">
+	    			<legend>En voiture</legend>
+	    			<ul>
+	    				<li ng-repeat="drivingValue in drivingValues">{{ drivingValue }}</li>
+	    			</ul>
+	    			<a href="#/info/driving/{{ from }}/{{ to }}"><button class="btn btn-info" data-ng-click="">+ d'infos</button></a>
+	    		</div>
+	    	</fieldset>
+	    </div>
+	<!--div class="span3">
 	    <fieldset ng-hide="!transitValues">
 	    		<div ng-class="{true: 'alert alert-info'}[InfoCssTransit]">
 	    	<legend>En transport en commun</legend>
@@ -69,5 +95,5 @@
 		   	<a href="#/info/transit/{{ from }}/{{ to }}"><button class="btn btn-info" data-ng-click="">+ d'infos</button></a>
 		   </div>
 		</fieldset>
-	</div>
+	</div-->
 </div>
