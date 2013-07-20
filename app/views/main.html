@@ -1,17 +1,16 @@
-    <!--h4>Parmi les moyens suivants : </h4>
-	<ul>
-		<li ng-repeat="transport in transportations">{{transport}}</li>
-	</ul-->
-	<div class="span12">
+   <h1 ng-show="resultat">{{ resultat }}</h1>
+   <br />
+    <div class="span12">
 		<div class="span6">
 			<form>
 				<fieldset>
 					<legend>Itinéraire</legend>
 					<label>De : </label>
-					<input data-ng-model="inputData.from" type="text" placeholder="Départ...">
+					<input data-ng-model="inputData.from" type="text" placeholder="Départ..." ng-required="true">
 
 					<label>A : </label>
-					<input data-ng-model="inputData.to" type="text" placeholder="Arrivée...">
+					<input data-ng-model="inputData.to" type="text" placeholder="Arrivée..." ng-required="true">
+               
 
 				</fieldset>
 
@@ -26,10 +25,24 @@
 				<div class="span12">
 					<div class="span3">
 						<div ng-show="searchResultFrom.name">	
-							<h2>{{searchResultFrom.name}}</h2>	
-							<h5>Actuellement: {{searchResultFrom.main.temp}}°C.</h5> 
-							<h6>Min: {{searchResultFrom.main.temp_min}}°C. 
-								Max: {{searchResultFrom.main.temp_max}}°C.</h6> 
+							<h2>{{searchResultFrom.name}}</h2>					
+								 <div ng-switch on="searchResultFrom.weather[0].icon" >
+									<h5 ng-switch-when="01d">Soleil</h5>
+									<h5 ng-switch-when="02d">Quelques nuages</h5>
+									<h5 ng-switch-when="03d">Nuages</h5>
+									<h5 ng-switch-when="04d">Nuages éparses</h5>									
+									<h5 ng-switch-when="09d">Averses</h5>
+									<h5 ng-switch-when="10d">Pluie</h5>
+									<h5 ng-switch-when="11d">Orages</h5>
+									<h5 ng-switch-when="13d">Neige</h5>
+									<h5 ng-switch-when="50d">Brouillard</h5>
+									<h5 ng-switch-default>Nuit</h5>	
+								</div>
+								<h5>{{searchResultFrom.main.temp}}°C.</h5>
+								<h6>Min: {{searchResultFrom.main.temp_min}}°C. 
+								Max: {{searchResultFrom.main.temp_max}}°C.</h6>
+								<h6>Humidité: {{searchResultFrom.main.humidity}} %</h6> 
+								<h6>Vent: {{searchResultFrom.wind.speed}} km/h</h6> 
 							</div>
 						</div>	
 						<div class="span3 weather-span weather-{{searchResultFrom.weather[0].icon}}">
@@ -38,9 +51,23 @@
 						<div class="span3">
 							<div ng-show="searchResultTo.name">
 								<h2>{{searchResultTo.name}}</h2>	
-								<h5>Actuellement: {{searchResultTo.main.temp}}°C.</h5> 
+								 <div ng-switch on="searchResultTo.weather[0].icon" >
+									<h5 ng-switch-when="01d">Soleil</h5>
+									<h5 ng-switch-when="02d">Quelques nuages</h5>
+									<h5 ng-switch-when="03d">Nuages</h5>
+									<h5 ng-switch-when="04d">Nuages éparses</h5>									
+									<h5 ng-switch-when="09d">Averses</h5>
+									<h5 ng-switch-when="10d">Pluie</h5>
+									<h5 ng-switch-when="11d">Orages</h5>
+									<h5 ng-switch-when="13d">Neige</h5>
+									<h5 ng-switch-when="50d">Brouillard</h5>
+									<h5 ng-switch-default>Nuit</h5>
+								</div>
+								<h5>{{searchResultTo.main.temp}}°C.</h5>
 								<h6>Min: {{searchResultTo.main.temp_min}}°C. 
 									Max: {{searchResultTo.main.temp_max}}°C.</h6>
+								<h6>Humidité: {{searchResultTo.main.humidity}} %</h6>
+								<h6>Vent: {{searchResultTo.main.speed}} km/h</h6> 
 								</div>
 							</div>
 							<div class="span3 weather-span weather-{{searchResultTo.weather[0].icon}}">
@@ -56,7 +83,7 @@
 							<div ng-class="{true: 'alert alert-info'}[InfoCssWalking]">
 								<legend>A pied</legend>
 								<ul>
-									<li ng-repeat="walkingValue in walkingValues">{{ walkingValue }}</li>
+									<span ng-repeat="walkingValue in walkingValues"><ng-switch on="$last "><li ng-switch-when="false ">{{ walkingValue }}</li></ng-switch></span>
 								</ul>
 								<a href="#/info/walking/{{ from }}/{{ to }}"><button class="btn btn-info" data-ng-click="">+ d'infos</button></a>
 
@@ -68,7 +95,7 @@
 	    		<div ng-class="{true: 'alert alert-info'}[InfoCssBicycling]">
 	    			<legend>A vélo</legend>
 	    			<ul>
-	    				<li ng-repeat="bicyclingValue in bicyclingValues">{{ bicyclingValue }}</li>
+	    				<span ng-repeat="bicyclingValue in bicyclingValues"><ng-switch on="$last "><li ng-switch-when="false ">{{ bicyclingValue }}</li></ng-switch></span>
 	    			</ul>
 	    			<a href="#/info/bicycling/{{ from }}/{{ to }}"><button class="btn btn-info" data-ng-click="">+ d'infos</button></a>
 	    		</div>
@@ -79,7 +106,7 @@
 	    		<div ng-class="{true: 'alert alert-info'}[InfoCssDriving]">
 	    			<legend>En voiture</legend>
 	    			<ul>
-	    				<li ng-repeat="drivingValue in drivingValues">{{ drivingValue }}</li>
+	    				<span ng-repeat="drivingValue in drivingValues"><ng-switch on="$last "><li ng-switch-when="false ">{{ drivingValue }}</li></ng-switch></span>
 	    			</ul>
 	    			<a href="#/info/driving/{{ from }}/{{ to }}"><button class="btn btn-info" data-ng-click="">+ d'infos</button></a>
 	    		</div>

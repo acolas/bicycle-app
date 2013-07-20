@@ -7,18 +7,16 @@ angular.module('bicycleApp')
   var map;
   var ll = new google.maps.LatLng(45.7550586, 4.873918199999935);
 
-  var mapOptions = {
-    zoom: 4,
-    mapTypeId: google.maps.MapTypeId.ROADMAP,
-    center: ll
-  };
-
     //IMPROVE with localStorage ?
     var dirService= new google.maps.DirectionsService();
     var directionsDisplay = new google.maps.DirectionsRenderer({ draggable: true });
 
-    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+    map = new google.maps.Map(document.getElementById("map_canvas"));
     directionsDisplay.setMap(map);
+    
+    var trafficLayer = new google.maps.TrafficLayer();
+    trafficLayer.setMap(map);
+
     directionsDisplay.setPanel(document.getElementById("directions"));
 
     var mode;

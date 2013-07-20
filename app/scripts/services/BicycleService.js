@@ -70,7 +70,7 @@ angular.module('bicycleApp')
     route.travelmode = travelMode;
     addRoute(route);
 
-    deferred.resolve([response.routes[0].legs[0].distance.text, response.routes[0].legs[0].duration.text]);
+    deferred.resolve([route.distance, route.duration, route.durationSecond]);
 
   }
 
