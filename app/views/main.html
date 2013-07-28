@@ -4,12 +4,12 @@
 		<div class="span6">
 			<form>
 				<fieldset>
-					<legend>Itinéraire</legend>
+					<legend>Itinéraire <h6><i>Merci d'utiliser l'auto complétion (Appuyer sur Entrée ou choisir dans la liste déroulante)</i></h6></legend>
 					<label>De : </label>
-					<input data-ng-model="inputData.from" type="text" placeholder="Départ..." ng-required="true">
+					<input id="searchTextFieldFrom" data-ng-model="inputData.from" type="text" placeholder="Départ..." ng-required="true">
 
 					<label>A : </label>
-					<input data-ng-model="inputData.to" type="text" placeholder="Arrivée..." ng-required="true">
+					<input id="searchTextFieldTo" data-ng-model="inputData.to" type="text" placeholder="Arrivée..." ng-required="true">
                
 
 				</fieldset>
@@ -85,7 +85,7 @@
 								<ul>
 									<span ng-repeat="walkingValue in walkingValues"><ng-switch on="$last "><li ng-switch-when="false ">{{ walkingValue }}</li></ng-switch></span>
 								</ul>
-								<a href="#/info/walking/{{ from }}/{{ to }}"><button class="btn btn-info" data-ng-click="">+ d'infos</button></a>
+								<a href="#/info/walking/{{ FROM }}/{{ TO }}"><button class="btn btn-info" data-ng-click="">+ d'infos</button></a>
 
 							</div>
 	    	</fieldset>
@@ -97,7 +97,7 @@
 	    			<ul>
 	    				<span ng-repeat="bicyclingValue in bicyclingValues"><ng-switch on="$last "><li ng-switch-when="false ">{{ bicyclingValue }}</li></ng-switch></span>
 	    			</ul>
-	    			<a href="#/info/bicycling/{{ from }}/{{ to }}"><button class="btn btn-info" data-ng-click="">+ d'infos</button></a>
+	    			<a href="#/info/bicycling/{{ FROM }}/{{ TO }}"><button class="btn btn-info" data-ng-click="">+ d'infos</button></a>
 	    		</div>
 	    	</fieldset>
 	    </div>
@@ -108,7 +108,7 @@
 	    			<ul>
 	    				<span ng-repeat="drivingValue in drivingValues"><ng-switch on="$last "><li ng-switch-when="false ">{{ drivingValue }}</li></ng-switch></span>
 	    			</ul>
-	    			<a href="#/info/driving/{{ from }}/{{ to }}"><button class="btn btn-info" data-ng-click="">+ d'infos</button></a>
+	    			<a href="#/info/driving/{{ FROM }}/{{ TO }}"><button class="btn btn-info" data-ng-click="">+ d'infos</button></a>
 	    		</div>
 	    	</fieldset>
 	    </div>

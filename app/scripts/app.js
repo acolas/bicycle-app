@@ -5,11 +5,12 @@ angular.module('bicycleApp', ['ui.map','ui.event',
     'waWeatherService',
     'waSessionStore',
     'ngResource'])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, $locationProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainController'
+        controller: 'MainController',
+        activetab:'accueil'
       })
       .when('/info/:travelMode/:from/:to', {
         templateUrl: 'views/info.html',
@@ -17,13 +18,27 @@ angular.module('bicycleApp', ['ui.map','ui.event',
       })
       .when('/a-propos', {
         templateUrl: 'views/a-propos.html',
-        controller: 'TodayController',
+        controller: 'EditoController',
+        activetab: 'a-propos'
       })
       .when('/contact', {
         templateUrl: 'views/contact.html',
-        controller: 'EditoController'
+        controller: 'EditoController',
+        activetab:'contact'
       })
       .otherwise({
         redirectTo: '/'
       });
-  });
+  })
+
+  .run(function($rootScope, $location){
+        $rootScope.menuActive = function(url, exactMatch){
+
+            if (exactMatch){
+                return $location.path() == url;
+            }
+            else {
+                return $location.path().indexOf(url) == 0;
+            }
+        }
+    });
