@@ -38,7 +38,7 @@ var inputFrom = document.getElementById('searchTextFieldFrom');
       var orig_listener = listener;
       listener = function (event) {
         var suggestion_selected = $(".pac-item.pac-selected").length > 0;
-        if (event.which == 13 && !suggestion_selected) {
+        if ((event.which == 13 || event.which == 9) && !suggestion_selected) {
           var simulated_downarrow = $.Event("keydown", {keyCode:40, which:40})
           orig_listener.apply(input, [simulated_downarrow]);
         }
@@ -73,7 +73,7 @@ var inputFrom = document.getElementById('searchTextFieldFrom');
       var orig_listener = listener;
       listener = function (event) {
         var suggestion_selected = $(".pac-item.pac-selected").length > 0;
-        if (event.which == 13 && !suggestion_selected) {
+        if ((event.which == 13 || event.which == 9) && !suggestion_selected) {
           var simulated_downarrow = $.Event("keydown", {keyCode:40, which:40})
           orig_listener.apply(input, [simulated_downarrow]);
         }
@@ -190,33 +190,44 @@ var inputFrom = document.getElementById('searchTextFieldFrom');
         }
 
         var bicycleWeatherFrom = true;
-        
-        console.log("From long : " + $scope.FromLong);
-        console.log("From lat : " + $scope.FromLat);
-        console.log("To long : " + $scope.ToLong);
-        console.log("To lat : " + $scope.ToLat);
-
-        var meteoFrom = WeatherService.today({ lat: $scope.FromLat, lon: $scope.FromLong }, function() {
+        var queryFrom = {lat: $scope.FromLat, lon: $scope.FromLong} ;
+        if(queryFrom.lat == undefined || queryFrom.lon == undefined){
+            queryFrom = {q: $scope.inputData.from};
+        }
+        var meteoFrom = WeatherService.today(queryFrom, function() {
           if (meteoFrom.weather[0].icon == "09d" || meteoFrom.weather[0].icon == "10d" || meteoFrom.weather[0].icon == "11d" || meteoFrom.weather[0].icon == "13d" ) {
             bicycleWeatherFrom = false;
           }
           if (distanceBicycling.slice(2) / 3600 > 0.5 || bicycleWeatherFrom == false){
-            $scope.resultat = "NON :-("; 
+            $scope.resultat = "NON :-(";             
+            $scope.InfoCssBicycling= false;
           } else {
             $scope.resultat = "OUI :^D"; 
+            $scope.InfoCssBicycling= true;
+            $scope.InfoCssWalking= false;
+            $scope.InfoCssDriving= false;
           }
         });
         $scope.searchResultFrom = meteoFrom;
 
         var bicycleWeatherTo = true;
-        var meteoTo = WeatherService.today({lat: $scope.ToLat , lon: $scope.ToLong }, function() {
+        var queryTo = {lat: $scope.ToLat, lon: $scope.ToLong} ;
+        if(queryTo.lat == undefined || queryTo.lon == undefined){
+            queryTo = {q: $scope.inputData.to};
+        }
+        var meteoTo = WeatherService.today(queryTo, function() {
           if (meteoTo.weather[0].icon == "09d" || meteoTo.weather[0].icon == "10d" || meteoTo.weather[0].icon == "11d" || meteoTo.weather[0].icon == "13d" ) {
             bicycleWeatherTo = false;
           }
           if (distanceBicycling.slice(2) / 3600 > 0.5 || bicycleWeatherTo == false){
-            $scope.resultat = "NON :-("; 
+            $scope.resultat = "NON :-(";               
+            $scope.InfoCssBicycling= false;
           } else {
             $scope.resultat = "OUI :^D"; 
+            $scope.InfoCssBicycling= true;
+            $scope.InfoCssWalking= false;
+            $scope.InfoCssDriving= false;
+
           }
         });
         $scope.searchResultTo = meteoTo; 
